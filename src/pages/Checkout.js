@@ -54,9 +54,9 @@ const CheckoutPage = () => {
     const usersString = await localStorage.getItem('user');
     const users = usersString ? JSON.parse(usersString) : [];
 
-    const alreadyExist = users.find((user) => {
-      return user.number === userDetails.number;
-    });
+    // const alreadyExist = users.find((user) => {
+    //   return user.number === userDetails.number;
+    // });
 
     users.push(userDetails);
 
