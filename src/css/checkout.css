@@ -1,0 +1,46 @@
+.input {
+  width: 100%;
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+.product-mini-outer-cont {
+  flex-basis: 24%;
+  padding: 1rem;
+  position: relative;
+}
+
+.product-mini-img {
+  background-color: #d4a8a8;
+  height: 200px;
+  object-fit: contain;
+}
+
+.product-mini-img-cont {
+  min-width: 200px;
+  height: 200px;
+  box-shadow: 0px 0px 25px -12px rgba(0, 0, 0, 0.61);
+  border-radius: 4px;
+}
+
+.product-mini-cont {
+  width: 100%;
+  margin-right: 10px;
+}
+
+.remove-from-cart {
+  top: 0;
+  right: 0;
+  position: absolute;
+  border: none;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+  box-shadow: 0px 0px 25px -12px rgba(0, 0, 0, 0.61);
+}
+.form-add {
+  margin-bottom: 1rem;
+}
