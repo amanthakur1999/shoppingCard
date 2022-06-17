@@ -12,6 +12,7 @@ const CheckoutPage = () => {
     name: '',
     number: '',
   });
+  const [session, setSession] = useState(false);
 
   const getAddedCartItemsFromStorage = async () => {
     const addedItemsString = await localStorage.getItem('cartItems');
@@ -49,19 +50,14 @@ const CheckoutPage = () => {
   };
 
   const onSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
 
     const usersString = await localStorage.getItem('user');
     const users = usersString ? JSON.parse(usersString) : [];
-
-    // const alreadyExist = users.find((user) => {
-    //   return user.number === userDetails.number;
-    // });
-
     users.push(userDetails);
-
     await localStorage.setItem('user', JSON.stringify(users));
     console.log(userDetails);
+    setSession(true);
   };
 
   return (
@@ -70,39 +66,42 @@ const CheckoutPage = () => {
         <h1 className="header-title">Online Grocery Shopping Store</h1>
       </header>
       <section className="section">
-        <form onSubmit={onSubmit} className="form-add">
-          <input
-            className="input"
-            type="text"
-            name="name"
-            placeholder="Customer Name"
-            value={userDetails.name}
-            onChange={handleChange}
-          />
-          <input
-            className="input"
-            type="number"
-            name="number"
-            placeholder="Phone number"
-            value={userDetails.number}
-            onChange={handleChange}
-          />
+        {session ? (
+          <div className="products-cont-1">
+            {addedProducts.map((product) => {
+              return (
+                <ProductCard
+                  product={product}
+                  key={product.id}
+                  removeFromCart={removeFromCart}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <form onSubmit={onSubmit} className="form-add">
+            <input
+              className="input"
+              type="text"
+              name="name"
+              placeholder="Customer Name"
+              value={userDetails.name}
+              onChange={handleChange}
+            />
+            <input
+              className="input"
+              type="number"
+              name="number"
+              placeholder="Phone number"
+              value={userDetails.number}
+              onChange={handleChange}
+            />
 
-          <button className="add-to-cart" type="submit">
-            Submit
-          </button>
-        </form>
-        <div className="products-cont">
-          {addedProducts.map((product) => {
-            return (
-              <ProductCard
-                product={product}
-                key={product.id}
-                removeFromCart={removeFromCart}
-              />
-            );
-          })}
-        </div>
+            <button className="add-to-cart submit-btn" type="submit">
+              Submit
+            </button>
+          </form>
+        )}
       </section>
     </main>
   );
